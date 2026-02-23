@@ -20,18 +20,11 @@ import { ActiveUsersWidget } from "@/components/dashboard/active-users-widget"
 import { TrafficSourceWidget } from "@/components/dashboard/traffic-source-widget"
 import { ContentPerformanceWidget } from "@/components/dashboard/content-performance-widget"
 import { GeoVisualizationWidget } from "@/components/dashboard/geo-visualization-widget"
-import { AIInsightsWidget } from "@/components/dashboard/ai-insights-widget"
 import { TrafficDetailsTable } from "@/components/dashboard/traffic-details-table"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function DashboardPage() {
   const data = useAnalyticsData()
-
-  // Format data for AI insights
-  const userInteractionsStr = `Current active users: ${data.activeUsers}. Growth trend: ${data.activeUsers > 1200 ? 'positive' : 'stable'}.`
-  const contentPerformanceStr = data.contentPerformance
-    .map(c => `${c.title}: ${c.views} views, ${c.engagement}% engagement`)
-    .join(', ')
 
   return (
     <SidebarProvider>
@@ -154,23 +147,16 @@ export default function DashboardPage() {
               </div>
 
               <div className="col-span-1 lg:col-span-1 xl:col-span-2">
-                <AIInsightsWidget 
-                  userInteractions={userInteractionsStr} 
-                  contentPerformance={contentPerformanceStr} 
-                />
+                <GeoVisualizationWidget hotspots={data.geoHotspots} />
               </div>
 
               {/* Row 2 */}
-              <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-2">
+              <div className="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-3">
                 <ContentPerformanceWidget items={data.contentPerformance} />
               </div>
 
               <div className="col-span-1 lg:col-span-1 xl:col-span-1">
                 <TrafficDetailsTable sources={data.trafficSources} />
-              </div>
-
-              <div className="col-span-1 lg:col-span-1 xl:col-span-1">
-                <GeoVisualizationWidget hotspots={data.geoHotspots} />
               </div>
             </div>
           </main>
