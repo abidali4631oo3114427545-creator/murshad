@@ -142,12 +142,12 @@ export default function DashboardPage() {
                 <ActiveUsersWidget count={data.activeUsers} history={data.activeUsersHistory} />
               </div>
 
-              <div className="col-span-1 lg:col-span-1 xl:col-span-2">
-                <GeoVisualizationWidget hotspots={data.geoHotspots} />
-              </div>
-
               <div className="col-span-1 lg:col-span-1 xl:col-span-1">
                 <TrafficDetailsTable sources={data.trafficSources} />
+              </div>
+
+              <div className="col-span-1 lg:col-span-1 xl:col-span-2">
+                <GeoVisualizationWidget hotspots={data.geoHotspots} />
               </div>
 
               {/* Row 2 */}
@@ -155,7 +155,7 @@ export default function DashboardPage() {
                 <ContentPerformanceWidget items={data.contentPerformance} />
               </div>
 
-              {/* Traffic Sources is now last */}
+              {/* Traffic Sources is last */}
               <div className="col-span-1 lg:col-span-1 xl:col-span-1">
                 <TrafficSourceWidget sources={data.trafficSources} />
               </div>
