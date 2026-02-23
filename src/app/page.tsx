@@ -11,8 +11,6 @@ import {
   HelpCircle,
   Bell,
   Search,
-  Menu,
-  ChevronRight,
   Plus
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -23,11 +21,11 @@ import { TrafficSourceWidget } from "@/components/dashboard/traffic-source-widge
 import { ContentPerformanceWidget } from "@/components/dashboard/content-performance-widget"
 import { GeoVisualizationWidget } from "@/components/dashboard/geo-visualization-widget"
 import { AIInsightsWidget } from "@/components/dashboard/ai-insights-widget"
+import { TrafficDetailsTable } from "@/components/dashboard/traffic-details-table"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function DashboardPage() {
   const data = useAnalyticsData()
-  const [isRefreshing, setIsRefreshing] = useState(false)
 
   // Format data for AI insights
   const userInteractionsStr = `Current active users: ${data.activeUsers}. Growth trend: ${data.activeUsers > 1200 ? 'positive' : 'stable'}.`
@@ -163,11 +161,15 @@ export default function DashboardPage() {
               </div>
 
               {/* Row 2 */}
-              <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-3">
+              <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-2">
                 <ContentPerformanceWidget items={data.contentPerformance} />
               </div>
 
-              <div className="col-span-1 lg:col-span-1">
+              <div className="col-span-1 lg:col-span-1 xl:col-span-1">
+                <TrafficDetailsTable sources={data.trafficSources} />
+              </div>
+
+              <div className="col-span-1 lg:col-span-1 xl:col-span-1">
                 <GeoVisualizationWidget hotspots={data.geoHotspots} />
               </div>
             </div>

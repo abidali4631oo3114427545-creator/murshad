@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 
 export type TrafficSource = {
   name: string
+  medium: string
   value: number
   color: string
 }
@@ -35,10 +36,10 @@ const INITIAL_DATA: AnalyticsData = {
   activeUsers: 1240,
   activeUsersHistory: Array.from({ length: 20 }, () => Math.floor(Math.random() * 500) + 1000),
   trafficSources: [
-    { name: 'Direct', value: 450, color: 'hsl(var(--chart-1))' },
-    { name: 'Organic', value: 300, color: 'hsl(var(--chart-2))' },
-    { name: 'Referral', value: 200, color: 'hsl(var(--chart-3))' },
-    { name: 'Social', value: 150, color: 'hsl(var(--chart-4))' },
+    { name: 'Direct', medium: '(none)', value: 450, color: 'hsl(var(--chart-1))' },
+    { name: 'Google', medium: 'organic', value: 300, color: 'hsl(var(--chart-2))' },
+    { name: 'Newsletter', medium: 'email', value: 200, color: 'hsl(var(--chart-3))' },
+    { name: 'LinkedIn', medium: 'social', value: 150, color: 'hsl(var(--chart-4))' },
   ],
   contentPerformance: [
     { id: '1', title: 'Getting Started with Real-time AI', views: 5420, engagement: 85, trend: 'up' },
