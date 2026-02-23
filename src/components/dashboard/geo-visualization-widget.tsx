@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -19,7 +18,7 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
   const mapPlaceholder = PlaceHolderImages.find(img => img.id === 'world-map')
 
   return (
-    <Card className="h-full flex flex-col">
+    <Card className="h-full flex flex-col border-t-2 border-primary">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div className="space-y-1">
           <CardTitle className="text-sm font-medium">Geographic Activity</CardTitle>
@@ -53,7 +52,7 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
                src={mapPlaceholder.imageUrl} 
                alt={mapPlaceholder.description}
                fill
-               className="object-cover opacity-60 contrast-110"
+               className="object-cover contrast-110"
                data-ai-hint={mapPlaceholder.imageHint}
              />
            )}

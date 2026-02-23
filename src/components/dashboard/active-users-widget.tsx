@@ -13,7 +13,7 @@ export function ActiveUsersWidget({ count, history }: ActiveUsersWidgetProps) {
   const chartData = history.map((val, i) => ({ val, i }))
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden border-t-2 border-primary">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">Real-time Users</CardTitle>
         <div className="flex items-center space-x-1 rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary animate-pulse">

@@ -12,7 +12,7 @@ interface ContentPerformanceWidgetProps {
 
 export function ContentPerformanceWidget({ items }: ContentPerformanceWidgetProps) {
   return (
-    <Card className="h-full">
+    <Card className="h-full border-t-2 border-primary">
       <CardHeader>
         <CardTitle className="text-sm font-medium">Content Performance</CardTitle>
       </CardHeader>

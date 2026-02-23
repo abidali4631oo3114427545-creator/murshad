@@ -10,7 +10,7 @@ interface TrafficSourceWidgetProps {
 
 export function TrafficSourceWidget({ sources }: TrafficSourceWidgetProps) {
   return (
-    <Card className="h-full">
+    <Card className="h-full border-t-2 border-primary">
       <CardHeader>
         <CardTitle className="text-sm font-medium">Traffic Sources</CardTitle>
       </CardHeader>

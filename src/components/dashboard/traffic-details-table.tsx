@@ -10,7 +10,7 @@ interface TrafficDetailsTableProps {
 
 export function TrafficDetailsTable({ sources }: TrafficDetailsTableProps) {
   return (
-    <Card className="h-full overflow-hidden border-none shadow-md">
+    <Card className="h-full overflow-hidden shadow-md border-t-2 border-primary">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-semibold tracking-tight">Traffic Acquisition</CardTitle>
       </CardHeader>
