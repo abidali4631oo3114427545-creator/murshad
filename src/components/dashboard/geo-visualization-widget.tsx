@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,19 +6,19 @@ import { MapPin, Globe, Activity } from "lucide-react"
 import Image from "next/image"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { LineChart, Line, ResponsiveContainer } from "recharts"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface GeoVisualizationWidgetProps {
   hotspots: GeoPoint[]
 }
 
-// Simulated data for the "fast line" sparkline
 const sparkData = Array.from({ length: 15 }, (_, i) => ({ val: Math.floor(Math.random() * 40) + 60 }))
 
 export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps) {
   const mapPlaceholder = PlaceHolderImages.find(img => img.id === 'world-map')
 
   return (
-    <Card className="h-full">
+    <Card className="h-full flex flex-col">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div className="space-y-1">
           <CardTitle className="text-sm font-medium">Geographic Activity</CardTitle>
@@ -46,28 +45,8 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
         </div>
         <Globe className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {hotspots.map((spot) => (
-            <div key={spot.id} className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                  <MapPin className="h-4 w-4 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium leading-none">{spot.name}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Real-time hotspots</p>
-                </div>
-              </div>
-              <div className="flex flex-col items-end">
-                <span className="text-sm font-bold">{spot.users}</span>
-                <span className="text-[10px] uppercase text-muted-foreground font-semibold">Users</span>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="mt-6 rounded-md h-32 relative overflow-hidden border border-border shadow-inner bg-muted/20">
+      <CardContent className="flex-1 flex flex-col gap-6 overflow-hidden">
+        <div className="rounded-md h-40 relative overflow-hidden border border-border shadow-inner bg-muted/20 shrink-0">
            {mapPlaceholder && (
              <Image 
                src={mapPlaceholder.imageUrl} 
@@ -79,7 +58,6 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
            )}
            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
            
-           {/* Pulsing activity markers */}
            <div className="absolute top-1/4 left-1/4 h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
            <div className="absolute top-1/2 left-1/2 h-2 w-2 rounded-full bg-primary animate-pulse delay-75 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
            <div className="absolute top-1/3 right-1/4 h-2 w-2 rounded-full bg-primary animate-pulse delay-150 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
@@ -92,6 +70,31 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
               </span>
               MAP VISUALIZATION ACTIVE
            </div>
+        </div>
+
+        <div className="flex-1 overflow-hidden">
+          <p className="text-xs font-bold uppercase text-muted-foreground mb-3 tracking-wider">Top 10 Countries</p>
+          <ScrollArea className="h-[200px] pr-4">
+            <div className="space-y-3">
+              {hotspots.slice(0, 10).map((spot, index) => (
+                <div key={spot.id} className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-[10px] font-bold text-muted-foreground w-4">{index + 1}.</span>
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/5">
+                      <MapPin className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium leading-none">{spot.name}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <span className="text-sm font-bold">{spot.users.toLocaleString()}</span>
+                    <span className="text-[9px] uppercase text-muted-foreground font-semibold">Active</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
         </div>
       </CardContent>
     </Card>

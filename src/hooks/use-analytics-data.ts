@@ -49,11 +49,16 @@ const INITIAL_DATA: AnalyticsData = {
     { id: '5', title: 'Privacy in Modern Tracking', views: 940, engagement: 45, trend: 'down' },
   ],
   geoHotspots: [
-    { id: 'us', name: 'New York, USA', users: 450, coords: [40, -74] },
-    { id: 'uk', name: 'London, UK', users: 320, coords: [51, 0] },
-    { id: 'jp', name: 'Tokyo, JP', users: 280, coords: [35, 139] },
-    { id: 'de', name: 'Berlin, DE', users: 150, coords: [52, 13] },
-    { id: 'br', name: 'São Paulo, BR', users: 90, coords: [-23, -46] },
+    { id: 'us', name: 'USA', users: 450, coords: [40, -74] },
+    { id: 'uk', name: 'United Kingdom', users: 320, coords: [51, 0] },
+    { id: 'jp', name: 'Japan', users: 280, coords: [35, 139] },
+    { id: 'de', name: 'Germany', users: 150, coords: [52, 13] },
+    { id: 'br', name: 'Brazil', users: 90, coords: [-23, -46] },
+    { id: 'ca', name: 'Canada', users: 85, coords: [56, -106] },
+    { id: 'fr', name: 'France', users: 78, coords: [46, 2] },
+    { id: 'au', name: 'Australia', users: 65, coords: [-25, 133] },
+    { id: 'in', name: 'India', users: 55, coords: [20, 78] },
+    { id: 'kr', name: 'South Korea', users: 42, coords: [35, 127] },
   ]
 }
 
