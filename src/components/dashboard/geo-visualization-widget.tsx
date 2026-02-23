@@ -1,3 +1,4 @@
+
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -52,7 +53,7 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
                src={mapPlaceholder.imageUrl} 
                alt={mapPlaceholder.description}
                fill
-               className="object-cover opacity-40 grayscale contrast-125"
+               className="object-cover opacity-60 contrast-110"
                data-ai-hint={mapPlaceholder.imageHint}
              />
            )}
@@ -63,10 +64,10 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
            <div className="absolute top-1/3 right-1/4 h-2 w-2 rounded-full bg-primary animate-pulse delay-150 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
            <div className="absolute bottom-1/4 right-1/3 h-2 w-2 rounded-full bg-primary animate-pulse delay-300 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
 
-           <div className="absolute bottom-2 left-2 flex items-center gap-2 bg-background/90 backdrop-blur-sm px-2 py-1 rounded border shadow-sm text-[10px] font-bold text-primary">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+           <div className="absolute bottom-2 left-2 flex items-center gap-2 bg-gradient-to-r from-primary to-blue-600 px-3 py-1 rounded-full shadow-[0_0_15px_rgba(var(--primary),0.5)] text-[10px] font-black text-white">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
               </span>
               MAP VISUALIZATION ACTIVE
            </div>
