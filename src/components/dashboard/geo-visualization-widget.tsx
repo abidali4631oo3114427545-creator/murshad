@@ -1,14 +1,19 @@
+
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { GeoPoint } from "@/hooks/use-analytics-data"
 import { MapPin, Globe } from "lucide-react"
+import Image from "next/image"
+import { PlaceHolderImages } from "@/lib/placeholder-images"
 
 interface GeoVisualizationWidgetProps {
   hotspots: GeoPoint[]
 }
 
 export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps) {
+  const mapPlaceholder = PlaceHolderImages.find(img => img.id === 'world-map')
+
   return (
     <Card className="h-full">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -36,9 +41,31 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
           ))}
         </div>
         
-        <div className="mt-6 rounded-md bg-accent/10 h-32 flex items-center justify-center relative overflow-hidden border border-accent/20">
-           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent animate-pulse" />
-           <p className="text-xs text-accent font-medium z-10">Map Visualization Active</p>
+        <div className="mt-6 rounded-md h-32 relative overflow-hidden border border-border shadow-inner bg-muted/20">
+           {mapPlaceholder && (
+             <Image 
+               src={mapPlaceholder.imageUrl} 
+               alt={mapPlaceholder.description}
+               fill
+               className="object-cover opacity-40 grayscale contrast-125"
+               data-ai-hint={mapPlaceholder.imageHint}
+             />
+           )}
+           <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+           
+           {/* Pulsing activity markers */}
+           <div className="absolute top-1/4 left-1/4 h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
+           <div className="absolute top-1/2 left-1/2 h-2 w-2 rounded-full bg-primary animate-pulse delay-75 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
+           <div className="absolute top-1/3 right-1/4 h-2 w-2 rounded-full bg-primary animate-pulse delay-150 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
+           <div className="absolute bottom-1/4 right-1/3 h-2 w-2 rounded-full bg-primary animate-pulse delay-300 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
+
+           <div className="absolute bottom-2 left-2 flex items-center gap-2 bg-background/80 backdrop-blur-sm px-2 py-0.5 rounded border text-[10px] font-semibold text-primary">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
+              </span>
+              LIVE STREAM
+           </div>
         </div>
       </CardContent>
     </Card>
