@@ -3,13 +3,17 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { GeoPoint } from "@/hooks/use-analytics-data"
-import { MapPin, Globe } from "lucide-react"
+import { MapPin, Globe, Activity } from "lucide-react"
 import Image from "next/image"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
+import { LineChart, Line, ResponsiveContainer } from "recharts"
 
 interface GeoVisualizationWidgetProps {
   hotspots: GeoPoint[]
 }
+
+// Simulated data for the "fast line" sparkline
+const sparkData = Array.from({ length: 15 }, (_, i) => ({ val: Math.floor(Math.random() * 40) + 60 }))
 
 export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps) {
   const mapPlaceholder = PlaceHolderImages.find(img => img.id === 'world-map')
@@ -17,7 +21,29 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
   return (
     <Card className="h-full">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-sm font-medium">Geographic Activity</CardTitle>
+        <div className="space-y-1">
+          <CardTitle className="text-sm font-medium">Geographic Activity</CardTitle>
+          <div className="flex items-center gap-2">
+             <div className="h-4 w-16">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={sparkData}>
+                    <Line 
+                      type="monotone" 
+                      dataKey="val" 
+                      stroke="hsl(var(--primary))" 
+                      strokeWidth={2} 
+                      dot={false} 
+                      isAnimationActive={false}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+             </div>
+             <span className="text-[10px] font-bold text-primary flex items-center gap-0.5">
+               <Activity className="h-3 w-3" />
+               FAST LINE
+             </span>
+          </div>
+        </div>
         <Globe className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent>
@@ -59,12 +85,12 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
            <div className="absolute top-1/3 right-1/4 h-2 w-2 rounded-full bg-primary animate-pulse delay-150 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
            <div className="absolute bottom-1/4 right-1/3 h-2 w-2 rounded-full bg-primary animate-pulse delay-300 shadow-[0_0_8px_rgba(var(--primary),0.8)]" />
 
-           <div className="absolute bottom-2 left-2 flex items-center gap-2 bg-background/80 backdrop-blur-sm px-2 py-0.5 rounded border text-[10px] font-semibold text-primary">
+           <div className="absolute bottom-2 left-2 flex items-center gap-2 bg-background/90 backdrop-blur-sm px-2 py-1 rounded border shadow-sm text-[10px] font-bold text-primary">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
               </span>
-              LIVE STREAM
+              MAP VISUALIZATION ACTIVE
            </div>
         </div>
       </CardContent>
