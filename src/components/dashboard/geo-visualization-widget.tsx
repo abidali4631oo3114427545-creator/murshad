@@ -73,10 +73,10 @@ export function GeoVisualizationWidget({ hotspots }: GeoVisualizationWidgetProps
         </div>
 
         <div className="flex-1 overflow-hidden">
-          <p className="text-xs font-bold uppercase text-muted-foreground mb-3 tracking-wider">Top 10 Countries</p>
+          <p className="text-xs font-bold uppercase text-muted-foreground mb-3 tracking-wider">Top 50 Countries</p>
           <ScrollArea className="h-[200px] pr-4">
             <div className="space-y-3">
-              {hotspots.slice(0, 10).map((spot, index) => (
+              {hotspots.slice(0, 50).map((spot, index) => (
                 <div key={spot.id} className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <span className="text-[10px] font-bold text-muted-foreground w-4">{index + 1}.</span>
