@@ -10,7 +10,9 @@ import {
   HelpCircle,
   Bell,
   Search,
-  Menu
+  Menu,
+  MoreVertical,
+  Terminal
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -23,6 +25,11 @@ import { TrafficDetailsTable } from "@/components/dashboard/traffic-details-tabl
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { TrackingCodeDialog } from "@/components/dashboard/tracking-code-dialog"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function DashboardPage() {
   const data = useAnalyticsData()
@@ -107,6 +114,18 @@ export default function DashboardPage() {
                 <Bell className="h-5 w-5" />
                 <span className="absolute top-2 right-2 flex h-2 w-2 rounded-full bg-primary" />
               </Button>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-9 w-9">
+                    <MoreVertical className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48 p-1">
+                  <TrackingCodeDialog />
+                </DropdownMenuContent>
+              </DropdownMenu>
+
               <div className="h-8 w-px bg-border mx-1 hidden sm:block" />
               <div className="flex items-center gap-3">
                 <div className="text-right hidden sm:block">
@@ -122,12 +141,6 @@ export default function DashboardPage() {
           </header>
 
           <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
-            <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-end animate-in fade-in slide-in-from-top-4 duration-500">
-              <div className="flex flex-wrap items-center gap-2 md:gap-3">
-                <TrackingCodeDialog />
-              </div>
-            </div>
-
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {/* Box 1: Active Users */}
               <div className="col-span-1">

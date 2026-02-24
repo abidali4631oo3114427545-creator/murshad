@@ -13,6 +13,7 @@ import {
 import { Code, Copy, Check, Terminal } from "lucide-react"
 import { firebaseConfig } from "@/firebase/config"
 import { toast } from "@/hooks/use-toast"
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 
 export function TrackingCodeDialog() {
   const [copied, setCopied] = useState(false)
@@ -64,10 +65,10 @@ export function TrackingCodeDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2 h-9 border-primary/20 hover:border-primary/50">
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="cursor-pointer gap-2 py-2">
           <Terminal className="h-4 w-4" />
-          Tracking Code
-        </Button>
+          <span>Tracking Code</span>
+        </DropdownMenuItem>
       </DialogTrigger>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
