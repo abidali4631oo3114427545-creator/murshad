@@ -1,6 +1,6 @@
+
 "use client"
 
-import { useState } from 'react'
 import { SidebarProvider, SidebarInset, Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
 import { 
   LayoutDashboard, 
@@ -127,7 +127,7 @@ export default function DashboardPage() {
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Analytics Overview</h1>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Monitoring data streams from your original sources.
+                  Monitoring data streams from your original website sources.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2 md:gap-3">
