@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from 'react'
@@ -25,6 +26,7 @@ import { TrafficDetailsTable } from "@/components/dashboard/traffic-details-tabl
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { TrackingCodeDialog } from "@/components/dashboard/tracking-code-dialog"
+import { AIInsightsWidget } from "@/components/dashboard/ai-insights-widget"
 
 export default function DashboardPage() {
   const data = useAnalyticsData()
@@ -128,7 +130,7 @@ export default function DashboardPage() {
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Analytics Overview</h1>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Monitoring data streams from 12 active sources. Last updated 3s ago.
+                  Monitoring data streams from your original sources.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2 md:gap-3">
@@ -145,20 +147,21 @@ export default function DashboardPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {/* Row 1: High Priority Metrics */}
               <div className="col-span-1">
                 <ActiveUsersWidget count={data.activeUsers} history={data.activeUsersHistory} />
               </div>
 
               <div className="col-span-1">
-                <TrafficDetailsTable sources={data.trafficSources} />
+                <AIInsightsWidget 
+                  userInteractions={`Current Active Users: ${data.activeUsers}`} 
+                  contentPerformance={JSON.stringify(data.contentPerformance)} 
+                />
               </div>
 
               <div className="col-span-1 lg:col-span-1 xl:col-span-2">
                 <GeoVisualizationWidget hotspots={data.geoHotspots} />
               </div>
 
-              {/* Row 2: Performance & Details */}
               <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-3">
                 <ContentPerformanceWidget items={data.contentPerformance} />
               </div>
