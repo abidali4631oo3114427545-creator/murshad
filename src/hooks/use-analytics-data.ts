@@ -1,6 +1,9 @@
+
 "use client"
 
 import { useState, useEffect } from 'react'
+import { useDoc, useFirestore } from '@/firebase'
+import { doc } from 'firebase/firestore'
 
 export type TrafficSource = {
   name: string
@@ -103,14 +106,28 @@ const INITIAL_DATA: AnalyticsData = {
 }
 
 export function useAnalyticsData() {
+  const db = useFirestore()
+  const statsRef = db ? doc(db, 'stats', 'current') : null
+  const { data: realStats } = useDoc(statsRef)
+
   const [data, setData] = useState<AnalyticsData>(INITIAL_DATA)
+
+  useEffect(() => {
+    if (realStats) {
+      setData(prev => ({
+        ...prev,
+        activeUsers: realStats.activeUsers ?? prev.activeUsers,
+        activeUsersHistory: realStats.activeUsersHistory ?? prev.activeUsersHistory
+      }))
+    }
+  }, [realStats])
 
   useEffect(() => {
     const interval = setInterval(() => {
       setData(prev => {
         const change = Math.floor(Math.random() * 41) - 20
-        const newActive = Math.max(800, prev.activeUsers + change)
-        const newHistory = [...prev.activeUsersHistory.slice(1), newActive]
+        const newActive = realStats?.activeUsers ?? Math.max(800, prev.activeUsers + change)
+        const newHistory = realStats?.activeUsersHistory ?? [...prev.activeUsersHistory.slice(1), newActive]
 
         const newSources = prev.trafficSources.map(s => ({
           ...s,
@@ -140,7 +157,7 @@ export function useAnalyticsData() {
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [realStats])
 
   return data
 }

@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from 'react'
@@ -111,12 +112,12 @@ export default function DashboardPage() {
               <div className="h-8 w-px bg-border mx-1 hidden sm:block" />
               <div className="flex items-center gap-3">
                 <div className="text-right hidden sm:block">
-                  <p className="text-xs font-semibold">Alex Rivers</p>
+                  <p className="text-xs font-semibold">MuRsHaDI</p>
                   <p className="text-[10px] text-muted-foreground uppercase tracking-tighter">Administrator</p>
                 </div>
                 <Avatar className="h-8 w-8 ring-2 ring-primary/10 transition-all hover:ring-primary/30">
                   <AvatarImage src="https://picsum.photos/seed/user1/40/40" />
-                  <AvatarFallback className="bg-primary/5 text-primary">AR</AvatarFallback>
+                  <AvatarFallback className="bg-primary/5 text-primary">MU</AvatarFallback>
                 </Avatar>
               </div>
             </div>

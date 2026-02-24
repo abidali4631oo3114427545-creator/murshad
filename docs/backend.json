@@ -1,0 +1,39 @@
+
+{
+  "entities": {
+    "SiteStats": {
+      "title": "Site Stats",
+      "description": "Real-time statistics for the website.",
+      "type": "object",
+      "properties": {
+        "activeUsers": {
+          "type": "number",
+          "description": "Current number of active users."
+        },
+        "activeUsersHistory": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Recent history of active user counts."
+        }
+      },
+      "required": [
+        "activeUsers"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "google.com"
+    ]
+  },
+  "firestore": {
+    "/stats/current": {
+      "schema": {
+        "$ref": "#/entities/SiteStats"
+      },
+      "description": "The current global statistics for the site."
+    }
+  }
+}
