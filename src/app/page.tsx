@@ -146,10 +146,17 @@ export default function DashboardPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {/* Box 1: Active Users */}
               <div className="col-span-1">
                 <ActiveUsersWidget count={data.activeUsers} history={data.activeUsersHistory} />
               </div>
 
+              {/* Box 2: Traffic Acquisition Details */}
+              <div className="col-span-1 md:col-span-2 lg:col-span-1">
+                <TrafficDetailsTable sources={data.trafficSources} />
+              </div>
+
+              {/* Box 3: AI Insights */}
               <div className="col-span-1">
                 <AIInsightsWidget 
                   userInteractions={`Current Active Users: ${data.activeUsers}`} 
@@ -157,20 +164,19 @@ export default function DashboardPage() {
                 />
               </div>
 
-              <div className="col-span-1 lg:col-span-1 xl:col-span-2">
-                <GeoVisualizationWidget hotspots={data.geoHotspots} />
-              </div>
-
-              <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-3">
-                <ContentPerformanceWidget items={data.contentPerformance} />
-              </div>
-
-              <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-1">
+              {/* Box 4: Traffic Segmentation */}
+              <div className="col-span-1">
                 <TrafficSourceWidget sources={data.trafficSources} />
               </div>
 
-              <div className="col-span-1 md:col-span-2 lg:col-span-4">
-                <TrafficDetailsTable sources={data.trafficSources} />
+              {/* Geographic Visualization */}
+              <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-2">
+                <GeoVisualizationWidget hotspots={data.geoHotspots} />
+              </div>
+
+              {/* Content Performance */}
+              <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-2">
+                <ContentPerformanceWidget items={data.contentPerformance} />
               </div>
             </div>
           </main>
