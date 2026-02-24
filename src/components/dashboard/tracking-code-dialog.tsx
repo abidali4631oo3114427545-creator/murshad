@@ -18,7 +18,7 @@ export function TrackingCodeDialog() {
   const [copied, setCopied] = useState(false)
 
   const trackingScript = `
-<!-- Insight Stream Real-time Tracking -->
+<!-- MuRsHaD Real-time Tracking -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
   import { getFirestore, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
@@ -39,12 +39,11 @@ export function TrackingCodeDialog() {
   // Track user arrival
   updateDoc(statsRef, {
     activeUsers: increment(1)
-  });
+  }).catch(e => console.error("MuRsHaD Track Err:", e));
 
   // Track user departure
   window.addEventListener("beforeunload", () => {
-    // Navigator.sendBeacon is better for exit tracking but requires an API
-    // For this simple prototype, we use a basic update
+    // Basic update on exit
     updateDoc(statsRef, {
       activeUsers: increment(-1)
     });
@@ -57,7 +56,7 @@ export function TrackingCodeDialog() {
     setCopied(true)
     toast({
       title: "Copied!",
-      description: "Tracking code copied to clipboard.",
+      description: "MuRsHaD tracking code copied to clipboard.",
     })
     setTimeout(() => setCopied(false), 2000)
   }
@@ -74,7 +73,7 @@ export function TrackingCodeDialog() {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Code className="h-5 w-5 text-primary" />
-            Website Tracking Setup
+            MuRsHaD Tracking Setup
           </DialogTitle>
           <DialogDescription>
             Copy and paste this snippet into the <code>&lt;head&gt;</code> of your website to track real-time active users.
@@ -95,7 +94,7 @@ export function TrackingCodeDialog() {
         </div>
         <div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/10">
           <p className="text-xs text-muted-foreground leading-tight">
-            <strong>Note:</strong> Ensure your Firebase Security Rules allow <code>update</code> on <code>/stats/current</code>. 
+            <strong>Note:</strong> Ensure your Firestore Security Rules allow <code>update</code> on <code>/stats/current</code>. 
             This script increments the count on page load and decrements it on page close.
           </p>
         </div>

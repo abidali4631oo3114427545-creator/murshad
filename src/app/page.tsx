@@ -1,4 +1,3 @@
-
 "use client"
 
 import { SidebarProvider, SidebarInset, Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
@@ -146,12 +145,12 @@ export default function DashboardPage() {
                 <TrafficDetailsTable sources={data.trafficSources} />
               </div>
 
-              {/* Box 3: Geographic Visualization */}
+              {/* Box 3: Geographic Activity */}
               <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-2">
                 <GeoVisualizationWidget hotspots={data.geoHotspots} />
               </div>
 
-              {/* Box 4: Traffic Segmentation */}
+              {/* Box 4: Traffic Source Segment */}
               <div className="col-span-1">
                 <TrafficSourceWidget sources={data.trafficSources} />
               </div>
