@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from 'react'
@@ -25,7 +26,6 @@ import { TrafficDetailsTable } from "@/components/dashboard/traffic-details-tabl
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { TrackingCodeDialog } from "@/components/dashboard/tracking-code-dialog"
-import { AIInsightsWidget } from "@/components/dashboard/ai-insights-widget"
 
 export default function DashboardPage() {
   const data = useAnalyticsData()
@@ -138,10 +138,6 @@ export default function DashboardPage() {
                   <Settings className="h-4 w-4" />
                   Configure
                 </Button>
-                <Button size="sm" className="gap-2 bg-primary h-9 shadow-lg shadow-primary/20">
-                  <Plus className="h-4 w-4" />
-                  New Widget
-                </Button>
               </div>
             </div>
 
@@ -156,15 +152,7 @@ export default function DashboardPage() {
                 <TrafficDetailsTable sources={data.trafficSources} />
               </div>
 
-              {/* Box 3: AI Insights */}
-              <div className="col-span-1">
-                <AIInsightsWidget 
-                  userInteractions={`Current Active Users: ${data.activeUsers}`} 
-                  contentPerformance={JSON.stringify(data.contentPerformance)} 
-                />
-              </div>
-
-              {/* Box 4: Traffic Segmentation */}
+              {/* Box 3: Traffic Segmentation */}
               <div className="col-span-1">
                 <TrafficSourceWidget sources={data.trafficSources} />
               </div>
