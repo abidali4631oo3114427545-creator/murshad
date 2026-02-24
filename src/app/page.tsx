@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from 'react'
@@ -166,8 +165,12 @@ export default function DashboardPage() {
                 <ContentPerformanceWidget items={data.contentPerformance} />
               </div>
 
-              <div className="col-span-1">
+              <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-1">
                 <TrafficSourceWidget sources={data.trafficSources} />
+              </div>
+
+              <div className="col-span-1 md:col-span-2 lg:col-span-4">
+                <TrafficDetailsTable sources={data.trafficSources} />
               </div>
             </div>
           </main>
