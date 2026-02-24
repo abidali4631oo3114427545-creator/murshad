@@ -24,6 +24,7 @@ import { GeoVisualizationWidget } from "@/components/dashboard/geo-visualization
 import { TrafficDetailsTable } from "@/components/dashboard/traffic-details-table"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { TrackingCodeDialog } from "@/components/dashboard/tracking-code-dialog"
 
 export default function DashboardPage() {
   const data = useAnalyticsData()
@@ -131,6 +132,7 @@ export default function DashboardPage() {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                <TrackingCodeDialog />
                 <Button variant="outline" size="sm" className="gap-2 h-9">
                   <Settings className="h-4 w-4" />
                   Configure
