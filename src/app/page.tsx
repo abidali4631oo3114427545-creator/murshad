@@ -122,13 +122,7 @@ export default function DashboardPage() {
           </header>
 
           <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
-            <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between animate-in fade-in slide-in-from-top-4 duration-500">
-              <div>
-                <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Analytics Overview</h1>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Monitoring data streams from your original website sources.
-                </p>
-              </div>
+            <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-end animate-in fade-in slide-in-from-top-4 duration-500">
               <div className="flex flex-wrap items-center gap-2 md:gap-3">
                 <TrackingCodeDialog />
               </div>
