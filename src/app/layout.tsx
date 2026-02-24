@@ -4,7 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
-  title: 'Insight Stream | Real-time Analytics Dashboard',
+  title: 'MuRsHaD | Real-time Analytics Dashboard',
   description: 'Advanced real-time data ingestion and analytics visualization dashboard.',
 };
 

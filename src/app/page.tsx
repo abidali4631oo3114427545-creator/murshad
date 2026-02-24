@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from 'react'
@@ -12,7 +11,6 @@ import {
   HelpCircle,
   Bell,
   Search,
-  Plus,
   Menu
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -39,7 +37,7 @@ export default function DashboardPage() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-lg shadow-primary/20">
                 <BarChart2 className="h-5 w-5" />
               </div>
-              <span className="text-xl font-bold tracking-tight">Insight Stream</span>
+              <span className="text-xl font-bold tracking-tight">MuRsHaD</span>
             </div>
           </SidebarHeader>
           <SidebarContent>
@@ -134,10 +132,6 @@ export default function DashboardPage() {
               </div>
               <div className="flex flex-wrap items-center gap-2 md:gap-3">
                 <TrackingCodeDialog />
-                <Button variant="outline" size="sm" className="gap-2 h-9">
-                  <Settings className="h-4 w-4" />
-                  Configure
-                </Button>
               </div>
             </div>
 
@@ -172,7 +166,7 @@ export default function DashboardPage() {
           <footer className="py-6 px-4 md:px-8 border-t bg-card/30 mt-auto">
              <div className="flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl mx-auto">
                 <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest font-semibold">
-                  © 2024 Insight Stream. All data processed in real-time.
+                  © 2024 MuRsHaD. All data processed in real-time.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-[10px] md:text-xs text-muted-foreground font-bold uppercase tracking-tighter">
                    <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
