@@ -146,17 +146,17 @@ export default function DashboardPage() {
                 <TrafficDetailsTable sources={data.trafficSources} />
               </div>
 
-              {/* Box 3: Traffic Segmentation */}
-              <div className="col-span-1">
-                <TrafficSourceWidget sources={data.trafficSources} />
-              </div>
-
-              {/* Geographic Visualization */}
+              {/* Box 3: Geographic Visualization */}
               <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-2">
                 <GeoVisualizationWidget hotspots={data.geoHotspots} />
               </div>
 
-              {/* Content Performance */}
+              {/* Box 4: Traffic Segmentation */}
+              <div className="col-span-1">
+                <TrafficSourceWidget sources={data.trafficSources} />
+              </div>
+
+              {/* Box 5: Content Performance */}
               <div className="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-2">
                 <ContentPerformanceWidget items={data.contentPerformance} />
               </div>
