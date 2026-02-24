@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from 'react'
@@ -35,7 +34,6 @@ export type AnalyticsData = {
   geoHotspots: GeoPoint[]
 }
 
-// Stable initial data for server-side rendering to prevent hydration mismatches
 const STABLE_INITIAL_DATA: AnalyticsData = {
   activeUsers: 0,
   activeUsersHistory: Array(20).fill(0),
@@ -45,13 +43,13 @@ const STABLE_INITIAL_DATA: AnalyticsData = {
 }
 
 export function useAnalyticsData() {
-  const db = useFirestore()
-  const statsRef = db ? doc(db, 'stats', 'current') : null
+  const firestore = useFirestore()
+  const statsRef = firestore ? doc(firestore, 'stats', 'current') : null
   const { data: realStats } = useDoc(statsRef)
 
   const [data, setData] = useState<AnalyticsData>(STABLE_INITIAL_DATA)
 
-  // Initialize data on the client side only to avoid hydration errors
+  // Initialize simulation data on client only to avoid hydration errors
   useEffect(() => {
     setData({
       activeUsers: 1240,
@@ -88,8 +86,8 @@ export function useAnalyticsData() {
     if (realStats) {
       setData(prev => ({
         ...prev,
-        activeUsers: realStats.activeUsers ?? prev.activeUsers,
-        activeUsersHistory: realStats.activeUsersHistory ?? prev.activeUsersHistory
+        activeUsers: typeof realStats.activeUsers === 'number' ? realStats.activeUsers : prev.activeUsers,
+        activeUsersHistory: Array.isArray(realStats.activeUsersHistory) ? realStats.activeUsersHistory : prev.activeUsersHistory
       }))
     }
   }, [realStats])
@@ -97,42 +95,22 @@ export function useAnalyticsData() {
   useEffect(() => {
     const interval = setInterval(() => {
       setData(prev => {
-        // Only run simulation if we have initialized data
         if (prev.activeUsers === 0) return prev;
 
         const change = Math.floor(Math.random() * 41) - 20
-        const newActive = realStats?.activeUsers ?? Math.max(800, prev.activeUsers + change)
-        const newHistory = realStats?.activeUsersHistory ?? [...prev.activeUsersHistory.slice(1), newActive]
-
-        const newSources = prev.trafficSources.map(s => ({
-          ...s,
-          value: Math.max(50, s.value + Math.floor(Math.random() * 11) - 5)
-        }))
-
-        const newContent = prev.contentPerformance.map(c => ({
-          ...c,
-          views: c.views + Math.floor(Math.random() * 10),
-          engagement: Math.min(100, Math.max(10, c.engagement + (Math.random() > 0.5 ? 1 : -1)))
-        }))
-
-        const newGeo = prev.geoHotspots.map(g => ({
-          ...g,
-          users: Math.max(1, g.users + Math.floor(Math.random() * 5) - 2)
-        }))
+        const newActive = Math.max(800, prev.activeUsers + change)
+        const newHistory = [...prev.activeUsersHistory.slice(1), newActive]
 
         return {
           ...prev,
           activeUsers: newActive,
           activeUsersHistory: newHistory,
-          trafficSources: newSources,
-          contentPerformance: newContent,
-          geoHotspots: newGeo
         }
       })
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [realStats])
+  }, [])
 
   return data
 }

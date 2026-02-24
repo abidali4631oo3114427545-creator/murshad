@@ -1,4 +1,3 @@
-
 'use client';
 
 import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
@@ -8,9 +7,9 @@ import { firebaseConfig } from './config';
 
 export function initializeFirebase(): { app: FirebaseApp; firestore: Firestore; auth: Auth } | null {
   try {
-    // Basic validation to prevent crashing during setup if environment variables are missing
-    if (!firebaseConfig.apiKey) {
-      console.warn('Firebase configuration is incomplete. Authentication and Firestore will be unavailable.');
+    // Check for required configuration to prevent runtime crashes with invalid/missing keys
+    if (!firebaseConfig.apiKey || firebaseConfig.apiKey === 'undefined') {
+      console.warn('Firebase API key is missing. The dashboard will use simulated data.');
       return null;
     }
 
@@ -19,7 +18,7 @@ export function initializeFirebase(): { app: FirebaseApp; firestore: Firestore; 
     const auth = getAuth(app);
     return { app, firestore, auth };
   } catch (error) {
-    console.error('Firebase failed to initialize:', error);
+    console.error('Firebase failed to initialize safely:', error);
     return null;
   }
 }
